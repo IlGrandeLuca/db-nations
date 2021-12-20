@@ -8,7 +8,6 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
 
 /**
  * @author lucai
@@ -26,6 +25,15 @@ public class NationsSearch {
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
+		String leftAlignFormat = "| %-4d | %-50s | %-30s | %-15s |%n";
+
+		System.out.format(
+				"+------+----------------------------------------------------+--------------------------------+-----------------+%n");
+		System.out.format(
+				"| ID   | Country                                            | Region                         | Continent       |%n");
+		System.out.format(
+				"+------+----------------------------------------------------+--------------------------------+-----------------+%n");
+
 		try (Connection con = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD)) {
 
 //			System.out.print(con.isClosed());
@@ -49,12 +57,12 @@ public class NationsSearch {
 //						Country c = new Country(rsNation.getInt(1), rsNation.getString(2), rsNation.getInt(3), null,
 //								rsNation.getString(5), rsNation.getString(6), rsNation.getInt(7));
 
-						System.out.print(rsNation.getInt(1) + " - ");
-						System.out.print(rsNation.getString(2) + " - ");
-						System.out.print(rsNation.getString(3) + " - ");
-						System.out.println(rsNation.getString(4));
+						System.out.format(leftAlignFormat, rsNation.getInt(1), rsNation.getString(2),
+								rsNation.getString(3), rsNation.getString(4));
 
 					} while (rsNation.next());
+					System.out.format(
+							"+------+----------------------------------------------------+--------------------------------+-----------------+%n");
 
 				}
 			}
