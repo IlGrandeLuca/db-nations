@@ -116,7 +116,7 @@ public class NationsSearch {
 	}
 
 	// Get country's stats
-	private static void selectStats(Connection con, int countryId) {
+	private static void selectStats(Connection con, int countryId) throws SQLException {
 
 		String selectStats = "select\r\n" + "	cs.`year`,\r\n" + "	cs.population,\r\n" + "	cs.gdp\r\n" + "from\r\n"
 				+ "	countries c\r\n" + "inner join country_stats cs on\r\n" + "	c.country_id = cs.country_id\r\n"
